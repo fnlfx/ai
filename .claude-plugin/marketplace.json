@@ -1,0 +1,14 @@
+{
+  "name": "funnelfox",
+  "description": "FunnelFox for Claude Code: edit your web funnels at the speed of a prompt.",
+  "owner": { "name": "FunnelFox", "url": "https://funnelfox.com" },
+  "plugins": [
+    {
+      "name": "funnelfox",
+      "source": "./",
+      "description": "Edit your FunnelFox funnels by prompt: copy, questions, plans, rebrands. Checked by the editor's validator, saved as unpublished drafts. Reads products and customer data only if you allow it.",
+      "category": "productivity",
+      "tags": ["funnelfox", "funnels", "paywall", "conversion", "mcp"]
+    }
+  ]
+}

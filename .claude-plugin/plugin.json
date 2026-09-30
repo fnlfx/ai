@@ -1,0 +1,23 @@
+{
+  "name": "funnelfox",
+  "displayName": "FunnelFox",
+  "version": "1.0.0",
+  "description": "Edit your FunnelFox web funnels by prompt: copy, quiz questions, plans, screens, navigation and rebrands, checked with the editor's validator and saved as unpublished drafts. With the permissions you grant at sign-in, Claude can also read your products, customer profiles, sessions and transactions.",
+  "author": {
+    "name": "FunnelFox",
+    "url": "https://funnelfox.com"
+  },
+  "homepage": "https://github.com/fnlfx/ai#readme",
+  "repository": "https://github.com/fnlfx/ai",
+  "license": "SEE LICENSE IN LICENSE",
+  "keywords": [
+    "funnelfox",
+    "funnels",
+    "web-funnels",
+    "quiz-funnels",
+    "paywall",
+    "subscriptions",
+    "conversion",
+    "mcp"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "description": "FunnelFox: save each design and its structure index after funnel_design_get, and screen images after funnel_screenshot_get.",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "^mcp__.*__funnel_design_get$",
+        "hooks": [{ "type": "command", "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/design-get.mjs\"", "timeout": 60 }]
+      },
+      {
+        "matcher": "^mcp__.*__funnel_screenshot_get$",
+        "hooks": [{ "type": "command", "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/screenshot-get.mjs\"", "timeout": 60 }]
+      }
+    ]
+  }
+}

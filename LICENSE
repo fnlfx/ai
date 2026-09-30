@@ -1,0 +1,22 @@
+FunnelFox plugin for Claude Code
+Copyright (c) 2026 Adapty / FunnelFox. All rights reserved.
+
+This software, including its skills, agents, hooks, scripts and bundled files (the "Software"), is
+proprietary to Adapty / FunnelFox ("FunnelFox").
+
+Permission is granted to install and use the Software only together with a FunnelFox account, for
+working with that account's FunnelFox projects, and only while that account is in good standing.
+
+No other right is granted. Without FunnelFox's prior written permission you may not copy (except
+as installing and running the Software requires), modify, adapt, translate, reverse engineer,
+distribute, sublicense, sell, publish or otherwise make the Software available to anyone else, in
+whole or in part.
+
+Your use of FunnelFox itself is governed by the FunnelFox Terms of Service
+(https://funnelfox.com/terms-of-service/).
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL FUNNELFOX BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OF OR OTHER DEALINGS IN THE SOFTWARE.
