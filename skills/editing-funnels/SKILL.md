@@ -102,6 +102,15 @@ Find things with `jq` (read-only), for example every button text on a screen:
 conversation. Verify the result with one `node -e` check script (or `--screen` on a sample screen) and
 `upload.mjs`, not by reading the file.
 
+**Add a language:** `locale_create` with the funnel, a country and a language adds the locale (the
+same as **Add locale** in the editor) and returns its id and the new version; `funnel_get` lists a
+funnel's locales under `locales`. Download the design at that version and write the translations in
+`locales["<locale id>"].strings`, a flat map from key to translated text: `<element id>.<props path>`
+(e.g. `el_ab12.content`), `__screen.<screen id>.<path>`, `__funnel.<path>`. A key left out shows the
+default text. Save with `funnel_design_update` as usual. Never ask the user to add the locale by hand.
+
+**New funnel from a template:** `template_list`, then `funnel_create` with `template_id` and a title.
+
 ## Hard rules
 
 - Run one command per Bash call, without `;`, `&&` or `|| echo` chains: permission rules usually

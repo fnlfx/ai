@@ -78,8 +78,8 @@ Grant only what you need. For editing funnels, `funnel:view` plus `funnel:edit` 
 | Permission | Tools | Allows |
 |---|---|---|
 | (always) | `project_info`, `project_list` | `project_info`: the organization, permissions and how many projects the sign-in reaches. `project_list`: find projects by name (paged). |
-| `funnel:view` | `funnel_list`, `funnel_get`, `funnel_design_get`, `funnel_screenshot_get` | List funnels, read their metadata and designs, render screens to images. |
-| `funnel:edit` | `funnel_design_update`, `funnel_create` | Save a design as a new unpublished version; create a new draft funnel as a copy of another. These are the only tools that write. |
+| `funnel:view` | `funnel_list`, `funnel_get`, `funnel_design_get`, `funnel_screenshot_get`, `template_list` | List funnels, read their metadata, locales and designs, render screens to images, list FunnelFox templates. |
+| `funnel:edit` | `funnel_design_update`, `funnel_create`, `locale_create` | Save a design as a new unpublished version; create a new draft funnel from a template or as a copy of another; add a locale to a funnel. These are the only tools that write. |
 | `product:view` | `product_list`, `product_get` | Read products and their price lists. Read-only. |
 | `customer:view` | `profile_list`, `profile_get`, `session_list`, `transaction_list` | Read end-user profiles (email, identifiers, country, the funnel they came from), their funnel sessions, and purchases, renewals and refunds. Read-only. |
 | `analytics:view` | `funnel_list`, `transaction_list` | List funnels and read transactions. Read-only. |

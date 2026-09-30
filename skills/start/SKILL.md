@@ -59,8 +59,8 @@ verbatim, and the lines below; the editing-funnels and designing-funnels skills 
 If the funnel is in an older design format (`precondition_failed` about the scheme, from any tool),
 stop and reply only this, with `[Title](editor_url)` from `funnel_get`:
 
-> [Title](editor_url) uses an older design format. Open it once in the FunnelFox editor to upgrade
-> it (no edit or publish needed), then run `/funnelfox:start` again.
+> [Title](editor_url) uses an older design format. Open it in the FunnelFox editor, make any small
+> edit and let it save (no publish needed), then run `/funnelfox:start` again.
 
 ## 5. Show the result
 
