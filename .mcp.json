@@ -2,7 +2,7 @@
   "mcpServers": {
     "funnelfox": {
       "type": "http",
-      "url": "${FF_MCP_URL:-https://api.funnelfox.com/mcp}"
+      "url": "https://api.funnelfox.com/mcp"
     }
   }
 }

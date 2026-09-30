@@ -93,8 +93,7 @@ The sign-in never does more than you can do yourself in FunnelFox. It shows up i
 
 So you can review it before installing:
 
-- **Network**: the MCP connection goes to `https://api.funnelfox.com/mcp` (or `$FF_MCP_URL` when
-  set), with the credential Claude Code stores. Designs and screenshots are downloaded from, and
+- **Network**: the MCP connection goes to `https://api.funnelfox.com/mcp`, with the credential Claude Code stores. Designs and screenshots are downloaded from, and
   designs uploaded to, short-lived signed URLs that the FunnelFox server returns in its tool
   results (FunnelFox file storage). The plugin sends data nowhere else and collects no telemetry.
 - **Files**: the download hooks write under `funnelfox/` in your project directory:
