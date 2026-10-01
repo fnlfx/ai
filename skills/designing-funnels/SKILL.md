@@ -17,10 +17,11 @@ Load it before changing anything. This skill decides *what* to change; editing-f
 
 1. Read the funnel's structure (editing-funnels index) and name its stages: entry, questions,
    value/proof, results, email, paywall, checkout, after purchase. See `references/flow.md`.
-2. Find the product, audience and voice from the funnel's own copy. Match them. Never switch the
-   product's name, claims or tone.
+2. Call `project_context_get`: what the user told FunnelFox about the product, audience, brand and
+   voice, and their own instructions, which you follow. Check it against the funnel's own copy and
+   match both. Never switch the product's name, claims or tone.
 3. Collect the facts you may use: prices, plan names, stats, reviews, press quotes, guarantees,
-   links. Everything a new screen states must come from the funnel or the user.
+   links. Everything a new screen states must come from the funnel, the project context or the user.
 4. Building from a copy of another funnel (a template, or an earlier draft of this one)? Everything
    in it is a leftover until you have checked it: every line of copy, every claim and price, every
    element style, against these rules and the brand.

@@ -53,7 +53,7 @@ editor. Preview it there and publish when you're happy.
 
 | Part | What it does |
 |---|---|
-| FunnelFox MCP server (`.mcp.json`) | Connects Claude Code to `https://api.funnelfox.com/mcp` with your FunnelFox sign-in. Lists funnels, reads and saves designs, renders screenshots, copies funnels; with the matching permissions, reads products, customer profiles, sessions and transactions. |
+| FunnelFox MCP server (`.mcp.json`) | Connects Claude Code to `https://mcp.funnelfox.com/mcp` with your FunnelFox sign-in. Lists funnels, reads and saves designs, renders screenshots, copies funnels; with the matching permissions, reads products, customer profiles, sessions and transactions. |
 | `/funnelfox:start` | A guided first run: checks your sign-in, lists your funnels, and runs a review, tone rewrite or rebrand on the one you pick. |
 | `editing-funnels` skill | How to change a design safely: work on a local copy, touch only what the goal needs, keep ids, navigation, prices and legal copy intact, validate before saving. Bundles a structure-index script and the editor's validator. |
 | `designing-funnels` skill | What makes a funnel convert without hurting trust: screen order, quiz questions, paywalls, honest urgency and pricing. Loads for "improve / design / review this funnel" requests, not for plain edits. |
@@ -78,7 +78,7 @@ Grant only what you need. For editing funnels, `funnel:view` plus `funnel:edit` 
 | Permission | Tools | Allows |
 |---|---|---|
 | (always) | `project_info`, `project_list` | `project_info`: the organization, permissions and how many projects the sign-in reaches. `project_list`: find projects by name (paged). |
-| `funnel:view` | `funnel_list`, `funnel_get`, `funnel_design_get`, `funnel_screenshot_get`, `template_list` | List funnels, read their metadata, locales and designs, render screens to images, list FunnelFox templates. |
+| `funnel:view` | `funnel_list`, `funnel_get`, `funnel_design_get`, `funnel_screenshot_get`, `template_list`, `project_context_get` | List funnels, read their metadata, locales and designs, render screens to images, list FunnelFox templates, read the project context (product, audience, brand, voice). |
 | `funnel:edit` | `funnel_design_update`, `funnel_create`, `locale_create` | Save a design as a new unpublished version; create a new draft funnel from a template or as a copy of another; add a locale to a funnel. These are the only tools that write. |
 | `product:view` | `product_list`, `product_get` | Read products and their price lists. Read-only. |
 | `customer:view` | `profile_list`, `profile_get`, `session_list`, `transaction_list` | Read end-user profiles (email, identifiers, country, the funnel they came from), their funnel sessions, and purchases, renewals and refunds. Read-only. |
@@ -93,7 +93,7 @@ The sign-in never does more than you can do yourself in FunnelFox. It shows up i
 
 So you can review it before installing:
 
-- **Network**: the MCP connection goes to `https://api.funnelfox.com/mcp`, with the credential Claude Code stores. Designs and screenshots are downloaded from, and
+- **Network**: the MCP connection goes to `https://mcp.funnelfox.com/mcp`, with the credential Claude Code stores. Designs and screenshots are downloaded from, and
   designs uploaded to, short-lived signed URLs that the FunnelFox server returns in its tool
   results (FunnelFox file storage). The plugin sends data nowhere else and collects no telemetry.
 - **Files**: the download hooks write under `funnelfox/` in your project directory:
@@ -133,11 +133,11 @@ The FunnelFox MCP server works without this plugin in any client that supports r
 client, so the essentials apply everywhere; the skills, subagent, hooks and local validation are
 Claude Code plugin features and are not available in other clients.
 
-Add the server URL `https://api.funnelfox.com/mcp` in the client; it opens the same browser sign-in
+Add the server URL `https://mcp.funnelfox.com/mcp` in the client; it opens the same browser sign-in
 on first use. In Claude Code without the plugin:
 
 ```sh
-claude mcp add --transport http funnelfox https://api.funnelfox.com/mcp
+claude mcp add --transport http funnelfox https://mcp.funnelfox.com/mcp
 ```
 
 then `/mcp` → `funnelfox` → **Authenticate**.
