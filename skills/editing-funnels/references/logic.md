@@ -16,7 +16,8 @@ nest more actions under provider configs, such as `successAction` or `failAction
 - `visibility` / `scroll`: show, hide or scroll to another element on the same screen, for example
   to reveal a Popup.
 
-To find where a screen leads, use the index (`→ next,#12`) or `--screen` mode. Do not grep raw JSON.
+To find where a screen leads, use the index (`→ next,#12`; `raw →` is navigation in a Raw element's
+code, see `raw.md`) or `--screen` mode. Do not grep raw JSON.
 
 ## Branching
 

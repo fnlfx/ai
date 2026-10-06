@@ -150,6 +150,8 @@ default text. Save with `funnel_design_update` as usual. Never ask the user to a
   moving and deleting screens and elements; header and layout.
 - `references/logic.md`: actions, navigation, branching, conditional visibility, `{{variables}}`.
 - `references/content.md`: text and rich text, plans and prices, legal copy, element notes.
+- `references/raw.md`: Raw (custom HTML) elements: how their code runs, the `fox` API (answers,
+  variables, navigation), editing their code.
 <!-- s5:theme -->
 - `references/theme.md`: rebrand, colours and fonts funnel-wide: `localThemeOverrides`, the key
   set to change, font leaves, what wins over the theme.

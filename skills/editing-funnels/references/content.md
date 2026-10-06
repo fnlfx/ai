@@ -100,7 +100,8 @@ currencies are yours to keep right.
   navigate action), do not add a Continue button.
 - **Image:** set a descriptive `alt`. Never print or copy a `url` that starts with `data:`; it can
   be megabytes.
-- **Raw:** custom HTML/JS written by the funnel's author. Do not edit it unless asked.
+- **Raw:** custom HTML/JS written by the funnel's author. Do not edit it unless asked. How it
+  works: `raw.md`.
 - **Chart:** data visualisations are the Chart element, never an image.
 - **Links:** use URLs already in the funnel or given by the user. Never invent or guess a URL, email
   or store link; leave it unset and tell the user what is missing.
