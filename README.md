@@ -53,12 +53,14 @@ editor. Preview it there and publish when you're happy.
 
 | Part | What it does |
 |---|---|
-| FunnelFox MCP server (`.mcp.json`) | Connects Claude Code to `https://mcp.funnelfox.com/mcp` with your FunnelFox sign-in. Lists funnels, reads and saves designs, renders screenshots, copies funnels; with the matching permissions, reads products, customer profiles, sessions and transactions. |
+| FunnelFox MCP server (`.mcp.json`) | Connects Claude Code to `https://mcp.funnelfox.com/mcp` with your FunnelFox sign-in. Lists funnels, reads and saves designs, copies funnels; with the matching permissions, reads products, customer profiles, sessions and transactions. |
 | `/funnelfox:start` | A guided first run: checks your sign-in, lists your funnels, and runs a review, tone rewrite or rebrand on the one you pick. |
 | `editing-funnels` skill | How to change a design safely: work on a local copy, touch only what the goal needs, keep ids, navigation, prices and legal copy intact, validate before saving. Bundles a structure-index script and the editor's validator. |
 | `designing-funnels` skill | What makes a funnel convert without hurting trust: screen order, quiz questions, paywalls, honest urgency and pricing. Loads for "improve / design / review this funnel" requests, not for plain edits. |
+| `screenshot-funnel` skill | Lets Claude see a saved funnel as a phone shows it: screenshots of chosen screens, taken on your computer with a headless Google Chrome. Needs Chrome installed; without it Claude says so and works without screenshots. |
+| `walk-funnel` skill | Tests a saved funnel end to end: headless Google Chrome on your computer walks one path from the first screen to the paywall, answering every screen (at random, or as you ask) and never paying, and reports where it gets stuck, with a screenshot per step. |
 | `designer` subagent (`funnelfox:designer`) | Does the funnel work in its own context, so large designs stay out of your conversation, and returns a short report of what changed. Uses the same model as your session. |
-| Download hooks | After `funnel_design_get`, save the design to `funnelfox/<funnel_id>/design.json` and its structure overview to `index.txt`. After `funnel_screenshot_get`, save the screen images to `funnelfox/<funnel_id>/shots/`. |
+| Hooks | After `funnel_design_get`, save the design to `funnelfox/<funnel_id>/design.json` and its structure overview to `index.txt`. Let the screenshot and walk scripts run without a permission prompt. |
 
 ### Install and sign-in details
 
@@ -78,7 +80,7 @@ Grant only what you need. For editing funnels, `funnel:view` plus `funnel:edit` 
 | Permission | Tools | Allows |
 |---|---|---|
 | (always) | `project_info`, `project_list` | `project_info`: the organization, permissions and how many projects the sign-in reaches. `project_list`: find projects by name (paged). |
-| `funnel:view` | `funnel_list`, `funnel_get`, `funnel_design_get`, `funnel_screenshot_get`, `template_list`, `project_context_get`, `funnel_plan_generate` | List funnels, read their metadata, locales and designs, render screens to images, list FunnelFox templates, read the project context (product, audience, brand, voice), get a recommended screen plan for a new funnel. |
+| `funnel:view` | `funnel_list`, `funnel_get`, `funnel_design_get`, `template_list`, `screen_template_list`, `screen_template_get`, `project_context_get`, `funnel_plan_generate` | List funnels, read their metadata, locales and designs, list FunnelFox templates, read ready-made screen templates, read the project context (product, audience, brand, voice), get a recommended screen plan for a new funnel. |
 | `funnel:edit` | `funnel_design_update`, `funnel_create`, `locale_create` | Save a design as a new unpublished version; create a new draft funnel from a template or as a copy of another; add a locale to a funnel. These are the only tools that write. |
 | `product:view` | `product_list`, `product_get` | Read products and their price lists. Read-only. |
 | `customer:view` | `profile_list`, `profile_get`, `session_list`, `transaction_list` | Read end-user profiles (email, identifiers, country, the funnel they came from), their funnel sessions, and purchases, renewals and refunds. Read-only. |
@@ -93,26 +95,34 @@ The sign-in never does more than you can do yourself in FunnelFox. It shows up i
 
 So you can review it before installing:
 
-- **Network**: the MCP connection goes to `https://mcp.funnelfox.com/mcp`, with the credential Claude Code stores. Designs and screenshots are downloaded from, and
-  designs uploaded to, short-lived signed URLs that the FunnelFox server returns in its tool
-  results (FunnelFox file storage). The plugin sends data nowhere else and collects no telemetry.
-- **Files**: the download hooks write under `funnelfox/` in your project directory:
-  - `funnelfox/.gitignore` containing `*`, written once when the hook creates `funnelfox/`, so git
+- **Network**: the MCP connection goes to `https://mcp.funnelfox.com/mcp`, with the credential Claude Code stores. Designs are downloaded from, and
+  uploaded to, short-lived signed URLs that the FunnelFox server returns in its tool
+  results (FunnelFox file storage). For screenshots, a headless Chrome opens the saved version's
+  FunnelFox preview page, which loads what the funnel loads for any visitor; the funnel walk does the same and
+  clicks through it, with analytics and tracking requests blocked. The plugin sends data
+  nowhere else and collects no telemetry.
+- **Files**: the download hook and the screenshot and walk scripts write under `funnelfox/` in your project directory:
+  - `funnelfox/.gitignore` containing `*`, written once when `funnelfox/` is created, so git
     ignores everything in it;
   - per funnel, in `funnelfox/<funnel_id>/`: `design.json` (the copy Claude edits),
     `design.orig.json` (the untouched download, for diffs), `index.txt` (the structure overview),
     and `design.edited.json` or `design.edited-<time>.json` when the funnel changed on the server
     while you had unsaved edits (your edits are moved there, never overwritten);
-  - screenshots, as `funnelfox/<funnel_id>/shots/<version or upload>/<screen_id>.png`.
+  - screenshots, as `funnelfox/<funnel_id>/shots/<version>/<screen_id>.png`;
+  - funnel walks, as `funnelfox/<funnel_id>/walks/<version>-<seed>/` (`walk.json` and a screenshot per step; the last 5 walks per funnel are kept).
 
   Delete the folder whenever you like.
-- **Hooks**: two Node.js scripts, `hooks/design-get.mjs` and `hooks/screenshot-get.mjs`, run after
-  `funnel_design_get` and `funnel_screenshot_get` return. They fail open: if anything goes wrong
-  they step aside and Claude downloads the files itself.
+- **Hooks**: two Node.js scripts. `hooks/design-get.mjs` runs after `funnel_design_get` returns; it
+  fails open: if anything goes wrong it steps aside and Claude downloads the files itself.
+  `hooks/approve-shot.mjs` runs before Bash commands and approves exactly two: `node` running this
+  plugin's screenshot or walk script with plain arguments. Everything else gets your normal permission rules.
 - **Scripts**: `skills/editing-funnels/scripts/index.mjs` (structure index),
   `skills/editing-funnels/scripts/upload.mjs` (validates the design, then uploads it to the
   signed URL) and `skills/editing-funnels/kit/validate.cjs` (the FunnelFox editor's validator,
   generated from the editor's source) run locally with `node` on the design file.
+  `skills/screenshot-funnel/scripts/shot.mjs` starts Google Chrome headless with a throwaway
+  profile, shoots the requested screens and closes it. `skills/walk-funnel/scripts/walk.mjs` does the same
+  for one walk through the funnel; both share `skills/screenshot-funnel/scripts/chrome.mjs`.
 
 ### Privacy
 

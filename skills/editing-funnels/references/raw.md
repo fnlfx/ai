@@ -113,11 +113,6 @@ Still works. Recognise it, don't write it:
 Code for every screen (pixels, global scripts) is `customHead`, a top-level string in the design,
 not a Raw element.
 
-## Screenshots
-
-Screenshots show only static markup: no scripts or `on…` handlers, and CSS applies only to the Raw
-element. Ask the user to check scripts in the editor's interactive preview.
-
 ## Editing
 
 Raw code is written by the funnel's author: do not edit it unless asked.

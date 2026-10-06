@@ -152,8 +152,8 @@ like the brand's own marketing, not a filled-in template.
 <!-- s5:shots -->
 ## Visual quality (check every screenshot against this)
 
-For a redesign, rebrand or layout change, look at screenshots of the result before saving (how:
-editing-funnels). For a new funnel or a rebrand, shoot **every** screen (several calls of up to 4).
+For a redesign, rebrand or layout change, look at screenshots of the saved result (how: the
+screenshot-funnel skill). For a new funnel or a rebrand, shoot **every** screen (several runs of up to 8).
 Review like a strict art director: score each screen out of 10 against this list, and fix and
 reshoot anything below 9. "Nothing needed fixing" on a first pass is rarely true. Check each screen
 for:
@@ -176,7 +176,7 @@ for:
 - **Honest content:** the redesign added no claims, numbers, badges or reviews the funnel did not
   already have.
 
-Fix what fails, look again, then save. Never describe how the funnel looks from the JSON alone.
+Fix what fails, save and look again. Never describe how the funnel looks from the JSON alone.
 <!-- /s5:shots -->
 
 ## References (read the one the task needs)

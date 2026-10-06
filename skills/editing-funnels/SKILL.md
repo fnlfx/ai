@@ -1,6 +1,6 @@
 ---
 name: editing-funnels
-description: How to read and change a FunnelFox funnel design safely with the FunnelFox MCP tools. Use whenever the user asks to look at, change, fix, copy or restructure a FunnelFox funnel or any part of one (screens, paywalls, quiz questions and options, copy and text, prices and plans, buttons, navigation and branching, visibility rules, legal text, colours, fonts and rebrands, screenshots), or when funnel_design_get, funnel_design_update or funnel_screenshot_get is involved.
+description: How to read and change a FunnelFox funnel design safely with the FunnelFox MCP tools. Use whenever the user asks to look at, change, fix, copy or restructure a FunnelFox funnel or any part of one (screens, paywalls, quiz questions and options, copy and text, prices and plans, buttons, navigation and branching, visibility rules, legal text, colours, fonts and rebrands, screenshots), or when funnel_design_get or funnel_design_update is involved.
 ---
 
 # Editing a FunnelFox funnel
@@ -60,20 +60,16 @@ one `node -e` script that prints all of them.
    with the kit and uploads it only if it is valid. It prints `200` on success; otherwise it prints
    the validation errors or the HTTP error, uploads nothing, and exits non-zero. Fix and run it
    again. There is no separate validate step.
-   <!-- s5:shots -->
-   **Visual goals only** (redesign, rebrand, layout, "make it look like…"): look before you save.
-   Call `funnel_screenshot_get` with `funnel_id` and the `upload_id`, and `screen_ids` for 2–4
-   screens that show the change (no ids = the first 4). The plugin's hook saves the PNGs under
-   `funnelfox/<funnel_id>/shots/` and lists the paths; open them with Read (without the hook, curl
-   each `url`). Check them against the designing-funnels quality list, fix, upload again to the same
-   `upload_url`, and shoot again if the change was large. The render is static: charts and anything
-   drawn by scripts (custom HTML widgets, animations, Lottie) are missing (the tool's `note` says
-   what); do not "fix" those. Static inline SVG and HTML do paint.
-   <!-- /s5:shots -->
 6. **Save:** `funnel_design_update` with `funnel_id`, `version` and `upload_id` from step 2. The
    server validates again. Send `dry_run: true` first only for bulk or
    structural edits (adding, removing or moving screens, rewiring navigation across screens, edits
    on many screens). A single-element change goes straight to the real save.
+   <!-- s5:shots -->
+   **Visual goals only** (redesign, rebrand, layout, "make it look like…"): look after you save.
+   Shoot 2–4 screens that show the change with the screenshot-funnel skill, from the save's
+   `preview_url`, and check them against the designing-funnels quality list. To fix, call
+   `funnel_design_get` again (the save made a new version), edit, upload, save and shoot again.
+   <!-- /s5:shots -->
 7. **Report** which screens and elements changed, anything you repaired that was broken before, and
    that the save is a new **unpublished** version. Nothing is live until someone publishes it in the
    FunnelFox editor. Name the funnel as `[Title](editor_url)` when the tool gave an editor_url and
@@ -110,6 +106,22 @@ funnel's locales under `locales`. Download the design at that version and write 
 default text. Save with `funnel_design_update` as usual. Never ask the user to add the locale by hand.
 
 **New funnel from a template:** `template_list`, then `funnel_create` with `template_id` and a title.
+
+**Add a standard screen** (question, social proof, loader, email, paywall, checkout…): start from
+`screen_template_list`/`screen_template_get`. The returned `screen` is complete and has fresh ids:
+follow `meta.instructions` (they override generic habits), insert it into `screens[]` and `tree`,
+then adapt the copy to the product.
+- Leave `__llm` markers in place. `__llm.legal` text stays (Hard rules), its prices matching the
+  screen's plans.
+- `__llm.imageKeep` images are structural: keep the element and its `url` as they are.
+- Every other image (Image elements, option images) arrives with an empty `url`. Fill it with an
+  image the funnel or the project context already has, or a designing-funnels inline SVG icon;
+  otherwise delete the Image element or set the option images to `{ "type": "none" }`, and say so in
+  your report. Never invent a URL.
+- `__llm.imageGroup: "transform-pair"` images (before/after) show one subject in one style: fill both
+  from the same source or remove both.
+- Ids are remapped only within the screen. Logic that reads another screen's answer (weight screens
+  reading the height screen's unit choice) must be re-pointed to that element in this funnel.
 
 ## Hard rules
 

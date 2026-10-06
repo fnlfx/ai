@@ -74,12 +74,6 @@ instead (`theme.md`). If the project theme itself changed since your read, get t
   `upload_url`.
 - `too_large`: the design (together with its stored version) is over the server's limit, so it
   cannot be saved through MCP. Nothing was saved; do not retry. Tell the user.
-<!-- s5:shots -->
-- `funnel_screenshot_get`: `invalid_argument` naming screen ids means those ids are not in the
-  design you shot (the upload or the version); pick ids from the index, at most 4. `unavailable`
-  means the renderer is down: retry once, then carry on without screenshots and tell the user you
-  could not look at the result.
-<!-- /s5:shots -->
 - `unavailable`: a FunnelFox service (storage, migration or the validator) did not answer, or is
   not configured. Nothing was saved. Retry once shortly; if it fails again, tell the user.
 - The sign-in is read-only (no `upload_url` in the result): you cannot save. Say so, and describe the

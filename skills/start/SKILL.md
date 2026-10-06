@@ -3,7 +3,7 @@ name: start
 description: Your first FunnelFox result in two minutes. Pick a funnel, then get a conversion review, a copy rewrite in a new tone or a rebrand to your colors, with screenshots. Checks your sign-in first.
 argument-hint: "[funnel name] [review | tone <tone> | rebrand <colors>]"
 disable-model-invocation: true
-allowed-tools: mcp__plugin_funnelfox_funnelfox__project_info mcp__plugin_funnelfox_funnelfox__project_list mcp__plugin_funnelfox_funnelfox__funnel_list mcp__plugin_funnelfox_funnelfox__funnel_get mcp__plugin_funnelfox_funnelfox__funnel_screenshot_get
+allowed-tools: mcp__plugin_funnelfox_funnelfox__project_info mcp__plugin_funnelfox_funnelfox__project_list mcp__plugin_funnelfox_funnelfox__funnel_list mcp__plugin_funnelfox_funnelfox__funnel_get
 ---
 
 # First win with FunnelFox
@@ -47,11 +47,12 @@ For the chosen funnel, offer exactly these (skip if the argument already chose o
 ## 4. Do it
 
 Hand the work to the `designer` subagent. Brief it with the funnel's id and title, the user's words
-verbatim, and the lines below; the editing-funnels and designing-funnels skills tell it how.
+verbatim, and the lines below; the editing-funnels, designing-funnels and screenshot-funnel skills
+tell it how. Always add: "Shoot the screens that show the result (up to 4) and list the PNG paths."
 
 - **Review:** "Design review only, do not save. Give the 3 fixes most likely to raise conversion,
-  each with the screen's visible title, what is wrong and the concrete change. Name the ids of up
-  to 4 screens that show them, for a screenshot." Take no other action.
+  each with the screen's visible title, what is wrong and the concrete change." Take no other
+  action.
 - **Tone or rebrand:** first call `funnel_create` with `from_funnel_id` and the title
   `<original title> (<tone or brand> draft)`, so the user's funnel stays untouched. Brief the
   designer on the new funnel id, not the original.
@@ -64,11 +65,9 @@ stop and reply only this, with `[Title](editor_url)` from `funnel_get`:
 
 ## 5. Show the result
 
-Call `funnel_screenshot_get` on the funnel you reported on (the copy, for tone or rebrand), with the
-screen ids the designer named, or none for the first 4. Open the saved PNGs with Read before you
-describe them. If the call fails or returns no usable image, do not retry or troubleshoot: say in
-one line that screenshots aren't available right now, and still give the rest, so the user can
-preview it in the editor. Then reply in under ~15 lines:
+Open the PNGs the designer listed with Read before you describe them. If it has none, do not
+retry or troubleshoot: say in one line that screenshots aren't available right now, and still give
+the rest, so the user can preview it in the editor. Then reply in under ~15 lines:
 
 - What was found or changed, by visible screen titles and text.
 - The screenshot file paths.

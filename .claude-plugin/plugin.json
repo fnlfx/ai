@@ -1,7 +1,7 @@
 {
   "name": "funnelfox",
   "displayName": "FunnelFox",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Edit your FunnelFox web funnels by prompt: copy, quiz questions, plans, screens, navigation and rebrands, checked with the editor's validator and saved as unpublished drafts. With the permissions you grant at sign-in, Claude can also read your products, customer profiles, sessions and transactions.",
   "author": {
     "name": "FunnelFox",

@@ -60,7 +60,7 @@ text colour that passes (WCAG contrast ratio at least 4.5:1 for body text, 3:1 f
 text): `button.color` on `button.backgroundColor`, `option.color` on `option.backgroundColor`,
 `option.activeTextColor` on `option.activeBgColor`, `card.color` on `card.backgroundColor`, text
 and heading colours on `app.backgroundColor`, `input.color` on `input.backgroundColor`. Selected
-states matter most: a static screenshot shows no option selected, so a failing active pair (white
+states matter most: a screenshot shows no option selected, so a failing active pair (white
 on a mid-tone brand colour) never shows up in it. A brand accent too light for white text gets a
 dark text colour, or a pale tint of the accent as the selected background.
 
@@ -146,5 +146,5 @@ for (const [g, keys] of Object.entries(brand)) d.localThemeOverrides[g] = { ...d
 Run it inside the usual `node -e` edit script (read `design.json`, change `d`, write it back). Then
 upload and save.
 <!-- s5:shots -->
-Before saving, screenshot a few screens (question, paywall) to check contrast and the font.
+After saving, shoot a few screens (question, paywall) to check contrast and the font.
 <!-- /s5:shots -->
