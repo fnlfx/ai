@@ -110,7 +110,9 @@ default text. Save with `funnel_design_update` as usual. Never ask the user to a
 **Add a standard screen** (question, social proof, loader, email, paywall, checkout…): start from
 `screen_template_list`/`screen_template_get`. The returned `screen` is complete and has fresh ids:
 follow `meta.instructions` (they override generic habits), insert it into `screens[]` and `tree`,
-then adapt the copy to the product.
+then adapt the copy to the product. The template is a starting layout: reshape, merge or drop its
+elements to fit the goal (`__llm.legal` and `__llm.imageKeep` elements stay); keep none just
+because it came with the template.
 - Leave `__llm` markers in place. `__llm.legal` text stays (Hard rules), its prices matching the
   screen's plans.
 - `__llm.imageKeep` images are structural: keep the element and its `url` as they are.

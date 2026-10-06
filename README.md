@@ -57,9 +57,11 @@ editor. Preview it there and publish when you're happy.
 | `/funnelfox:start` | A guided first run: checks your sign-in, lists your funnels, and runs a review, tone rewrite or rebrand on the one you pick. |
 | `editing-funnels` skill | How to change a design safely: work on a local copy, touch only what the goal needs, keep ids, navigation, prices and legal copy intact, validate before saving. Bundles a structure-index script and the editor's validator. |
 | `designing-funnels` skill | What makes a funnel convert without hurting trust: screen order, quiz questions, paywalls, honest urgency and pricing. Loads for "improve / design / review this funnel" requests, not for plain edits. |
+| `funnel-strategy` skill | Before a new funnel or a restructure, studies competitors with the `researcher` subagent, writes a short strategy for your product (who it is for, the questions that matter, how each answer is used, what not to ask), asks you to approve it, then builds the funnel from it and checks the result against it. |
 | `screenshot-funnel` skill | Lets Claude see a saved funnel as a phone shows it: screenshots of chosen screens, taken on your computer with a headless Google Chrome. Needs Chrome installed; without it Claude says so and works without screenshots. |
 | `walk-funnel` skill | Tests a saved funnel end to end: headless Google Chrome on your computer walks one path from the first screen to the paywall, answering every screen (at random, or as you ask) and never paying, and reports where it gets stuck, with a screenshot per step. |
 | `designer` subagent (`funnelfox:designer`) | Does the funnel work in its own context, so large designs stay out of your conversation, and returns a short report of what changed. Uses the same model as your session. |
+| `researcher` subagent (`funnelfox:researcher`) | Before a new funnel or a restructure, studies your niche and top competitors in FunnelFox Radar in its own context and returns a short list of funnel patterns for the strategy. Reads only; never edits funnels. Uses the same model as your session. |
 | Hooks | After `funnel_design_get`, save the design to `funnelfox/<funnel_id>/design.json` and its structure overview to `index.txt`. Let the screenshot and walk scripts run without a permission prompt. |
 
 ### Install and sign-in details
@@ -140,7 +142,7 @@ What FunnelFox does with your data is covered by the
 
 The FunnelFox MCP server works without this plugin in any client that supports remote
 (streamable HTTP) MCP servers with OAuth sign-in. The server sends its core editing rules to every
-client, so the essentials apply everywhere; the skills, subagent, hooks and local validation are
+client, so the essentials apply everywhere; the skills, subagents, hooks and local validation are
 Claude Code plugin features and are not available in other clients.
 
 Add the server URL `https://mcp.funnelfox.com/mcp` in the client; it opens the same browser sign-in

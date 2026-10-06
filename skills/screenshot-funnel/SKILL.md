@@ -13,18 +13,25 @@ brand, "looks good") without a shot of the saved version.
 1. **Save first.** Only saved versions can be shot. Take `preview_url` as it is, never build or
    edit it: from `funnel_design_update` after a save, or from `funnel_design_get` / `funnel_create`
    for the latest saved version (e.g. reviewing a funnel without editing).
-2. **Pick a few screens**: the ones you changed, plus a neighbour if the change affects flow or
-   theme. Not the whole funnel. At most 8 per run.
+2. **Pick the screens**: the ones you changed, plus a neighbour if the change affects flow or
+   theme. For a new funnel or a rebrand, every screen in one run. At most 40 per run.
 3. Run, from the project directory, with this skill's base directory:
    ```sh
    node "<skill dir>/scripts/shot.mjs" "<preview_url>" <screen_id> <screen_id>...
    ```
    Exactly this form, nothing chained before or after it, so it runs without a permission prompt.
-   It takes about 5 seconds per screen.
+   It shoots several screens at once: about 6 seconds for 8 screens, 11 seconds for 24.
 4. It prints one line per screen: the PNG path
    (`funnelfox/<funnel_id>/shots/<version>/<screen_id>.png`), the path followed by
    `(may be incomplete: …)`, or `<screen_id>: failed (…)`. **Open every PNG with Read** before you
    say anything about it.
+
+## Rounds
+
+For a new funnel or a rebrand: one full round of every screen after the first complete save.
+Then collect every fix from that round, make them all, save once and shoot **only the screens you
+changed** since. Repeat until every screen passes, at most 4 rounds in all. Never save and shoot
+after each single fix.
 
 ## Read the shots
 

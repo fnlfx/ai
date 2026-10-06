@@ -41,14 +41,17 @@ Load it before changing anything. This skill decides *what* to change; editing-f
 - **Honest urgency only.** A countdown or "limited-time" offer must really end: when it expires the
   visitor sees the full price. Use the full-price twin in `references/timed-offers.md`. Never fake
   scarcity ("only 3 spots left"), never reset a timer to fake a deadline.
-- **No prices you were not given.** If the user gave no prices and the project has no products, put
-  no numbers on a paywall: no placeholders, no list prices you remember, no "free forever". End the
-  funnel on an honest next step instead (create an account, get the app, join the waitlist, leave
-  an email) and ask for the plans and prices in your report. The same goes for fees, limits, rates
-  and speeds: describe what the product does, never promise a figure or a guarantee.
+- **No prices you were not given.** Never use list prices you remember or "free forever". When a
+  new funnel or a restructure needs a paywall and no prices are given and the project has no
+  products, still build the paywall and checkout with placeholder prices: 2 plans, no trial unless
+  given, no "was" prices, savings or badges built on them. Flag them in your report as placeholders
+  to replace before publishing. Fees, limits, rates and speeds: describe what the product does,
+  never promise a figure or a guarantee.
 - **Prices stay true.** A struck-through "was" price must be a price the product really charges
   (for example the monthly plan's price when anchoring a yearly plan per month). Savings, per-day
   and per-week figures must be correct arithmetic from real prices. Round down savings, never up.
+  A longer plan shows its value next to a shorter one, and a product claim from the context stays
+  the product's claim, never a fact about users (`references/paywall.md`).
 - **Legal copy is untouchable except for accuracy.** Follow editing-funnels's legal-copy rules; every
   price or plan change updates the disclosures that quote it.
 - **Personalize with real answers.** When the funnel personalises, play back what the visitor chose
@@ -149,14 +152,25 @@ like the brand's own marketing, not a filled-in template.
 - **Short funnels** (a few screens): hook, one to three questions whose answers shape what follows,
   value or proof, then the next step. Every screen earns its place.
 
+## Custom HTML (Raw) when it earns its place
+
+Native elements first. Add a Raw element only for a visual that carries the visitor's answers or
+the product's trust and that native elements cannot draw: a meter, a score card, a stats row
+(numbers the user or project gave), comparison bars; a data chart stays the native Chart element.
+About 3 Raw screens per funnel at most.
+- Never for the question itself: answers stay native Options or Inputs, which keep analytics and
+  branching.
+- Theme colours and font, fits a 375 px screen, and checked in a screenshot like any other screen.
+- The facts rules above apply inside the code too. Mechanics: editing-funnels `references/raw.md`.
+
 <!-- s5:shots -->
 ## Visual quality (check every screenshot against this)
 
 For a redesign, rebrand or layout change, look at screenshots of the saved result (how: the
-screenshot-funnel skill). For a new funnel or a rebrand, shoot **every** screen (several runs of up to 8).
-Review like a strict art director: score each screen out of 10 against this list, and fix and
-reshoot anything below 9. "Nothing needed fixing" on a first pass is rarely true. Check each screen
-for:
+screenshot-funnel skill). For a new funnel or a rebrand, shoot **every** screen (one run).
+Review like a strict art director: score each screen out of 10 against this list, fix everything
+below 9 in one batch, then reshoot only the screens you changed. "Nothing needed fixing" on a
+first pass is rarely true. Check each screen for:
 
 - **Hierarchy:** the eye lands on the headline first, then the answer options or the offer, then
   the button. One idea per screen.

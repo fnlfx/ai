@@ -239,7 +239,8 @@ export const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
  * requests for readiness; `onEvent` gets every other protocol event of the tab.
  */
 export async function openTab(chrome, onEvent = () => {}) {
-  const { targetId } = await chrome.send('Target.createTarget', { url: 'about:blank' });
+  // A window of its own: a background tab is throttled and its animations never finish.
+  const { targetId } = await chrome.send('Target.createTarget', { url: 'about:blank', newWindow: true });
   const { sessionId } = await chrome.send('Target.attachToTarget', { targetId, flatten: true });
   const net = { inflight: new Map(), lastActivity: Date.now() };
   // Only the page's own requests hold readiness: iframes (payment, chat, auth widgets) and

@@ -115,7 +115,8 @@ not a Raw element.
 
 ## Editing
 
-Raw code is written by the funnel's author: do not edit it unless asked.
+Existing Raw code is the funnel's author's: do not edit it unless asked. Adding a new Raw element
+while you design the funnel is fine (when: designing-funnels, "Custom HTML (Raw)").
 
 The index overview shows where Raw code navigates as `raw →` (a missing target is a warning). The
 `--screen` view shows a Raw element's script flag, visible text, `fox.navigation` targets,

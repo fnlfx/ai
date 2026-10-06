@@ -20,9 +20,16 @@
   ("Most popular" or "Best value"). One badge per paywall.
 - Show every plan in the same unit so they compare at a glance: per week or per month for all, or
   per day for all. The charged amount and period stay visible on each plan.
-- Savings claims compare the plan with a real alternative the visitor could buy here
-  (for example 12 months vs 12 × the monthly price). Compute them, round down, and keep them next to
-  the plan they describe.
+- The amount billed today is at least as prominent as any per-day, per-week or per-month
+  equivalent. Never lead a plan card with an equivalent that hides an upfront charge
+  ("$0.43 / day" in large type over a small "$79.99 billed today").
+- With a longer and a shorter plan, show what the longer one is worth: "Save 66%" against the
+  shorter plan bought for the same time (12 × the monthly price), or its per-month equivalent
+  ("$9.99 / mo") as secondary text. Compute from the prices shown, round down, keep it next to
+  the plan it describes, never more prominent than the billed amount. With placeholder prices,
+  the per-month equivalent only.
+- Product claims from the context (savings, outcomes) stay the product's claim, not a fact about
+  users or this visitor: "Acme estimates members save about $X a year", never "You'll save $X".
 - A struck-through "was" price must be a real price for the same period (the monthly plan's price
   when showing the yearly plan per month). Never an invented reference price.
 - Put the recommended plan where the eye lands first; do not hide cheaper plans.
@@ -50,6 +57,8 @@
 - Is one plan recommended, preselected and badged, and do all prices compare in one unit?
 - Is every number (price, saving, per-day figure, "was" price) true and consistent with the
   plans and disclosures?
+- Is the amount billed today at least as prominent as any per-period equivalent?
+- Does the longer plan show its value (savings % or per-month equivalent)?
 - Is there exactly one primary CTA above the fold, repeated at the bottom on long screens?
 - Is any urgency real (see `timed-offers.md`)?
 - Are benefits real features, short, and ordered by relevance to the goal?
